@@ -17,13 +17,14 @@ var pikePlace = {
     var totalCookies = 0;
     var setClock = 0;
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
+      var totalCustomers = parseInt(this.trafficSimulated());
+      totalCookies = parseInt(totalCustomers * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
-    console.log('totalCookies', totalCookies);
+    console.log('dailySales', this.dailySales);
   },
 
   render: function () {
@@ -73,13 +74,14 @@ var seatac = {
     var totalCookies = 0;
     var setClock = 0;
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
+      var totalCustomers = parseInt(this.trafficSimulated());
+      totalCookies = parseInt(totalCustomers * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
-    console.log('totalCookies', totalCookies);
+    console.log('dailySales', this.dailySales);
   },
 
   render: function () {
@@ -129,13 +131,14 @@ var seattleCenter = {
     var totalCookies = 0;
     var setClock = 0;
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
+      var totalCustomers = parseInt(this.trafficSimulated());
+      totalCookies = parseInt(totalCustomers * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
-    console.log('totalCookies', totalCookies);
+    console.log('dailySales', this.dailySales);
   },
 
   render: function () {
@@ -185,13 +188,14 @@ var capHill = {
     var totalCookies = 0;
     var setClock = 0;
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
+      var totalCustomers = parseInt(this.trafficSimulated());
+      totalCookies = parseInt(totalCustomers * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
-    console.log('totalCookies', totalCookies);
+    console.log('dailySales', this.dailySales);
   },
 
   render: function () {
@@ -241,13 +245,14 @@ var alki = {
     var totalCookies = 0;
     var setClock = 0;
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
+      var totalCustomers = parseInt(this.trafficSimulated());
+      totalCookies = parseInt(totalCustomers * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
-    console.log('totalCookies', totalCookies);
+    console.log('dailySales', this.dailySales);
   },
 
   render: function () {
@@ -309,7 +314,7 @@ alki.render();
 // COMMON FUNCTIONS
 
 function randomInRange(min,max) {
-  return Math.floor(Math.random() * (max-min)) + min;
+  return Math.floor(Math.random() * (max-min + 1)) + min;
 }
 
 function setTime(hoursAfterOpening) {
