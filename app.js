@@ -19,7 +19,7 @@ function Store(storeName, minHourlyTraffic, maxHourlyTraffic, avgPurchase) {
 
   this.populateSalesArray(this.minHourlyTraffic, this.maxHourlyTraffic, this.avgPurchase);
   stores.push(this);
-  dailySalesAllStores.push(this.dailySales);
+  // dailySalesAllStores.push(this.dailySales);
   this.render();
 }
 
@@ -67,48 +67,31 @@ Store.prototype.render = function () {
   //create elements
   //create content for elements
   //append elements to page at anchor id
+  
+  // create and populate data row for a store   
+  var rowGenericEl = document.createElement('tr');  // create row item
 
-  var storeHeaderEl = document.createElement('tr');
-  for (var i=0; i<stores.length; i++) {
-    // create and append store name row header  <th>
-
-    // create and append sales data cells for single store  <td>
-    var thingy = 0;    
-    for (var j=0; j<stores[0].dailySales.length; j++) {    // create and append single hourly sales data element
-      thingy = document.createElement('td');
-      thingy.textContent = stores[i].dailySales[j].sales; // point to sales data for this store at this hour
-      storeHeaderEl.appendChild(document.createElement('td'));
-    }
-
-    // create and append store daily totals row header  <th>
-
+  // create, fill, and append store name row header  <th> 
+  var rowheadGenericEl = document.createElement('th');  // create row header (store name)
+  rowheadGenericEl.textContent = this.storeName;
+  rowGenericEl.appendChild(rowheadGenericEl);
+  
+  
+  // create, fill append sales data cells for single store  <td>
+  var tdGenericEl = 0;  // generic placeholder to be recycled while generating and appending <td> cells
+  for (var j=0; j<this.dailySales.length; j++) {    // create and append single hourly sales data element
+    tdGenericEl = document.createElement('td');
+    tdGenericEl.textContent = this.dailySales[j].sales; // point to sales data for this store at this hour
+    rowGenericEl.appendChild(document.createElement('td'));
   }
-
-
-
-  // var mainEl = document.getElementById('main-content');
-  // var container = document.createElement('section');
-  // var listBoxEl = document.createElement('ul');
-  // var listHeadingEl = document.createElement('h3');
-  // var totalSalesEl = document.createElement('li');
   
-  // listHeadingEl.textContent = this.storeName;
-  // totalSalesEl.textContent = 'Total: ' + this.dailyCookieTotal;
-  
-  // listBoxEl.appendChild(listHeadingEl);
+  // create, fill, and append store daily totals row header  <th>
+  var rowtailGenericEl = document.createElement('th');  // create row header (store name)
+  rowtailGenericEl.textContent = this.dailyCookieTotal;
+  rowGenericEl.appendChild(rowtailGenericEl);
 
-  // var timeSlot = 0;    // append list items to list box
-  // for (var indexDailySales = 0; indexDailySales < this.dailySales.length; indexDailySales++) {
-  //   timeSlot = document.createElement('li');
-  //   timeSlot.textContent = this.dailySales[indexDailySales].time + this.dailySales[indexDailySales].sales; // *** CONSIDER ADDING LIST TEXT HERE ***
-  //   listBoxEl.appendChild(timeSlot);
-  // }
-  
-  // listBoxEl.appendChild(totalSalesEl);
-  
-  // container.appendChild(listBoxEl);
+  // append this store's data row to the global table
 
-  // mainEl.appendChild(container);
 };
 
 // create store objects
@@ -143,3 +126,14 @@ function sumArray (someArray) {
   }
   return arraySum;
 }
+
+function makeTable () {
+  // create containers and tie to id
+  var mainEl = document.getElementById('main-content');
+  var container = document.createElement('section');
+  var rowEl = stores[0].render();
+  container.appendChild(rowEl);
+  mainEl.appendChild(container);
+}
+
+makeTable();
