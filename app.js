@@ -1,7 +1,12 @@
 
-// BUILD LOCATION OBJECTS
+// build store objects
 
-function Store(storeName,minHourlyTraffic, maxHourlyTraffic, avgPurchase) {
+var stores = [];
+
+function Store(storeName, minHourlyTraffic, maxHourlyTraffic, avgPurchase) {
+
+  console.log('this', this);
+
   this.storeName = storeName;
   this.minHourlyTraffic = minHourlyTraffic;
   this.maxHourlyTraffic = maxHourlyTraffic;
@@ -10,17 +15,20 @@ function Store(storeName,minHourlyTraffic, maxHourlyTraffic, avgPurchase) {
   this.dailySales = [];
   this.dailyCookieTotal = 0;
 
-  // stores.push(this);     // ***FIX: need to create array of store objects
+  this.populateSalesArray(this.minHourlyTraffic, this.maxHourlyTraffic, this.avgPurchase);
+  stores.push(this);
+  this.render();
 }
 
+// prototype functions for all store objects
 Store.prototype.getHoursOfOp = function(hoursAfterOpening) {  // populate dailySales[].time
   var time = '';
   if (hoursAfterOpening < 6) {
-    time = `${hoursAfterOpening+6}am: `;
+    time = `${hoursAfterOpening+6}:00am `;
   } else if (hoursAfterOpening === 6) {
-    time = '12pm: ';
+    time = '12:00pm ';
   } else {
-    time = `${hoursAfterOpening-6}pm: `;
+    time = `${hoursAfterOpening-6}:00pm `;
   }
   return time;
 };
@@ -68,9 +76,9 @@ Store.prototype.render = function () {
   listBoxEl.appendChild(listHeadingEl);
 
   var timeSlot = 0;    // append list items to list box
-  for (var salesListWalk = 0; salesListWalk < this.dailySales.length; salesListWalk++) {
+  for (var indexDailySales = 0; indexDailySales < this.dailySales.length; indexDailySales++) {
     timeSlot = document.createElement('li');
-    timeSlot.textContent = this.dailySales[salesListWalk].time + this.dailySales[salesListWalk].sales; // *** CONSIDER ADDING LIST TEXT HERE ***
+    timeSlot.textContent = this.dailySales[indexDailySales].time + this.dailySales[indexDailySales].sales; // *** CONSIDER ADDING LIST TEXT HERE ***
     listBoxEl.appendChild(timeSlot);
   }
   
@@ -81,27 +89,11 @@ Store.prototype.render = function () {
   mainEl.appendChild(container);
 };
 
-
+// create store objects
 var pikeStore = new Store('1st and Pike', 23, 65, 6.3);
 var seatacStore = new Store('SeaTac Airport', 3, 24, 1.2);
 var seattleCenterStore = new Store('Seattle Center', 11, 38, 3.7);
 var capHillStore = new Store('Capitol Hill', 20, 38, 2.3);
 var alkiStore = new Store('Alki', 2, 16, 4.6);
 
-// POPULATE AND RENDER SALES TABLES
-pikeStore.populateSalesArray(pikeStore.minHourlyTraffic, pikeStore.maxHourlyTraffic, pikeStore.avgPurchase);
-pikeStore.render();
-
-seatacStore.populateSalesArray(seatacStore.minHourlyTraffic, seatacStore.maxHourlyTraffic, seatacStore.avgPurchase);
-seatacStore.render();
-
-seattleCenterStore.populateSalesArray(seattleCenterStore.minHourlyTraffic, seattleCenterStore.maxHourlyTraffic, seattleCenterStore.avgPurchase);
-seattleCenterStore.render();
-
-capHillStore.populateSalesArray(capHillStore.minHourlyTraffic, capHillStore.maxHourlyTraffic, capHillStore.avgPurchase);
-capHillStore.render();
-
-alkiStore.populateSalesArray(alkiStore.minHourlyTraffic, alkiStore.maxHourlyTraffic, alkiStore.avgPurchase);
-alkiStore.render();
-
-
+console.log('stores', stores);
