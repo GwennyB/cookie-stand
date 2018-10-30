@@ -1,323 +1,19 @@
 
 // BUILD LOCATION OBJECTS
 
-var pikePlace = {
-  storeName: '1st and Pike',
-  minHourlyTraffic: 23,
-  maxHourlyTraffic: 65,
-  avgPurchase: 6.3,
-  dailySales: [],
-  dailySalesTotal: 0,
+function Store(storeName,minHourlyTraffic, maxHourlyTraffic, avgPurchase) {
+  this.storeName = storeName;
+  this.minHourlyTraffic = minHourlyTraffic;
+  this.maxHourlyTraffic = maxHourlyTraffic;
+  this.avgPurchase = avgPurchase;
 
-  trafficSimulated: function() {
-    return randomInRange(this.minHourlyTraffic, this.maxHourlyTraffic);
-  },
+  this.dailySales = [];
+  this.dailyCookieTotal = 0;
 
-  salesTable: function() {
-    var totalCookies = 0;
-    var setClock = 0;
-    for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      var totalCustomers = parseInt(this.trafficSimulated());
-      totalCookies = parseInt(totalCustomers * this.avgPurchase);
-      setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
-      console.log('totalCookies', totalCookies);
-      this.dailySalesTotal += totalCookies;
-    }
-    console.log('dailySales', this.dailySales);
-  },
-
-  render: function () {
-    //create elements
-    //create content for elements
-    //append elements to page at anchor id
-    var container = document.createElement('div');
-    var listBoxEl = document.createElement('ul');
-    var listHeadingEl = document.createElement('h3');
-    var totalSalesEl = document.createElement('li');
-    
-    listHeadingEl.textContent = this.storeName;
-    totalSalesEl.textContent = 'Total: ' + this.dailySalesTotal;
-    
-    listBoxEl.appendChild(listHeadingEl);
-
-    var timeSlot = 0;    // append list items to list box
-    for (var salesListWalk = 0; salesListWalk < this.dailySales.length; salesListWalk++) {
-      timeSlot = document.createElement('li');
-      timeSlot.textContent = this.dailySales[salesListWalk].time + this.dailySales[salesListWalk].sales;
-      listBoxEl.appendChild(timeSlot);
-    }
-    
-    listBoxEl.appendChild(totalSalesEl);
-    
-    container.appendChild(listBoxEl);
-
-    var mainEl = document.getElementById('main-content');
-    mainEl.appendChild(container);
-  }
-
-};
-
-var seatac = {
-  storeName: 'SeaTac Airport',
-  minHourlyTraffic: 3,
-  maxHourlyTraffic: 24,
-  avgPurchase: 1.2,
-  dailySales: [],
-  dailySalesTotal: 0,
-
-  trafficSimulated: function() {
-    return randomInRange(this.minHourlyTraffic, this.maxHourlyTraffic);
-  },
-
-  salesTable: function() {
-    var totalCookies = 0;
-    var setClock = 0;
-    for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      var totalCustomers = parseInt(this.trafficSimulated());
-      totalCookies = parseInt(totalCustomers * this.avgPurchase);
-      setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
-      console.log('totalCookies', totalCookies);
-      this.dailySalesTotal += totalCookies;
-    }
-    console.log('dailySales', this.dailySales);
-  },
-
-  render: function () {
-    //create elements
-    //create content for elements
-    //append elements to page at anchor id
-    var container = document.createElement('div');
-    var listBoxEl = document.createElement('ul');
-    var listHeadingEl = document.createElement('h3');
-    var totalSalesEl = document.createElement('li');
-    
-    listHeadingEl.textContent = this.storeName;
-    totalSalesEl.textContent = 'Total: ' + this.dailySalesTotal;
-    
-    listBoxEl.appendChild(listHeadingEl);
-
-    var timeSlot = 0;    // append list items to list box
-    for (var salesListWalk = 0; salesListWalk < this.dailySales.length; salesListWalk++) {
-      timeSlot = document.createElement('li');
-      timeSlot.textContent = this.dailySales[salesListWalk].time + this.dailySales[salesListWalk].sales;
-      listBoxEl.appendChild(timeSlot);
-    }
-    
-    listBoxEl.appendChild(totalSalesEl);
-    
-    container.appendChild(listBoxEl);
-
-    var mainEl = document.getElementById('main-content');
-    mainEl.appendChild(container);
-  }
-
-};
-
-var seattleCenter = {
-  storeName: 'Seattle Center',
-  minHourlyTraffic: 11,
-  maxHourlyTraffic: 38,
-  avgPurchase: 3.7,
-  dailySales: [],
-  dailySalesTotal: 0,
-
-  trafficSimulated: function() {
-    return randomInRange(this.minHourlyTraffic, this.maxHourlyTraffic);
-  },
-
-  salesTable: function() {
-    var totalCookies = 0;
-    var setClock = 0;
-    for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      var totalCustomers = parseInt(this.trafficSimulated());
-      totalCookies = parseInt(totalCustomers * this.avgPurchase);
-      setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
-      console.log('totalCookies', totalCookies);
-      this.dailySalesTotal += totalCookies;
-    }
-    console.log('dailySales', this.dailySales);
-  },
-
-  render: function () {
-    //create elements
-    //create content for elements
-    //append elements to page at anchor id
-    var container = document.createElement('div');
-    var listBoxEl = document.createElement('ul');
-    var listHeadingEl = document.createElement('h3');
-    var totalSalesEl = document.createElement('li');
-    
-    listHeadingEl.textContent = this.storeName;
-    totalSalesEl.textContent = 'Total: ' + this.dailySalesTotal;
-    
-    listBoxEl.appendChild(listHeadingEl);
-
-    var timeSlot = 0;    // append list items to list box
-    for (var salesListWalk = 0; salesListWalk < this.dailySales.length; salesListWalk++) {
-      timeSlot = document.createElement('li');
-      timeSlot.textContent = this.dailySales[salesListWalk].time + this.dailySales[salesListWalk].sales;
-      listBoxEl.appendChild(timeSlot);
-    }
-    
-    listBoxEl.appendChild(totalSalesEl);
-    
-    container.appendChild(listBoxEl);
-
-    var mainEl = document.getElementById('main-content');
-    mainEl.appendChild(container);
-  }
-
-};
-
-var capHill = {
-  storeName: 'Capitol Hill',
-  minHourlyTraffic: 20,
-  maxHourlyTraffic: 38,
-  avgPurchase: 2.3,
-  dailySales: [],
-  dailySalesTotal: 0,
-
-  trafficSimulated: function() {
-    return randomInRange(this.minHourlyTraffic, this.maxHourlyTraffic);
-  },
-
-  salesTable: function() {
-    var totalCookies = 0;
-    var setClock = 0;
-    for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      var totalCustomers = parseInt(this.trafficSimulated());
-      totalCookies = parseInt(totalCustomers * this.avgPurchase);
-      setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
-      console.log('totalCookies', totalCookies);
-      this.dailySalesTotal += totalCookies;
-    }
-    console.log('dailySales', this.dailySales);
-  },
-
-  render: function () {
-    //create elements
-    //create content for elements
-    //append elements to page at anchor id
-    var container = document.createElement('div');
-    var listBoxEl = document.createElement('ul');
-    var listHeadingEl = document.createElement('h3');
-    var totalSalesEl = document.createElement('li');
-    
-    listHeadingEl.textContent = this.storeName;
-    totalSalesEl.textContent = 'Total: ' + this.dailySalesTotal;
-    
-    listBoxEl.appendChild(listHeadingEl);
-
-    var timeSlot = 0;    // append list items to list box
-    for (var salesListWalk = 0; salesListWalk < this.dailySales.length; salesListWalk++) {
-      timeSlot = document.createElement('li');
-      timeSlot.textContent = this.dailySales[salesListWalk].time + this.dailySales[salesListWalk].sales;
-      listBoxEl.appendChild(timeSlot);
-    }
-    
-    listBoxEl.appendChild(totalSalesEl);
-    
-    container.appendChild(listBoxEl);
-
-    var mainEl = document.getElementById('main-content');
-    mainEl.appendChild(container);
-  }
-
-};
-
-var alki = {
-  storeName: 'Alki',
-  minHourlyTraffic: 2,
-  maxHourlyTraffic: 16,
-  avgPurchase: 4.6,
-  dailySales: [],
-  dailySalesTotal: 0,
-
-  trafficSimulated: function() {
-    return randomInRange(this.minHourlyTraffic, this.maxHourlyTraffic);
-  },
-
-  salesTable: function() {
-    var totalCookies = 0;
-    var setClock = 0;
-    for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
-      var totalCustomers = parseInt(this.trafficSimulated());
-      totalCookies = parseInt(totalCustomers * this.avgPurchase);
-      setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies', customers: totalCustomers};
-      console.log('totalCookies', totalCookies);
-      this.dailySalesTotal += totalCookies;
-    }
-    console.log('dailySales', this.dailySales);
-  },
-
-  render: function () {
-    //create elements
-    //create content for elements
-    //append elements to page at anchor id
-    var container = document.createElement('div');
-    var listBoxEl = document.createElement('ul');
-    var listHeadingEl = document.createElement('h3');
-    var totalSalesEl = document.createElement('li');
-    
-    listHeadingEl.textContent = this.storeName;
-    totalSalesEl.textContent = 'Total: ' + this.dailySalesTotal;
-    
-    listBoxEl.appendChild(listHeadingEl);
-
-    var timeSlot = 0;    // append list items to list box
-    for (var salesListWalk = 0; salesListWalk < this.dailySales.length; salesListWalk++) {
-      timeSlot = document.createElement('li');
-      timeSlot.textContent = this.dailySales[salesListWalk].time + this.dailySales[salesListWalk].sales;
-      listBoxEl.appendChild(timeSlot);
-    }
-    
-    listBoxEl.appendChild(totalSalesEl);
-    
-    container.appendChild(listBoxEl);
-
-    var mainEl = document.getElementById('main-content');
-    mainEl.appendChild(container);
-  }
-
-};
-
-// POPULATE AND RENDER SALES TABLES
-pikePlace.salesTable();
-pikePlace.render();
-
-seatac.salesTable();
-seatac.render();
-
-seattleCenter.salesTable();
-seattleCenter.render();
-
-capHill.salesTable();
-capHill.render();
-
-alki.salesTable();
-alki.render();
-
-
-
-// BUILD TABLE USING OBJECT LITERALS
-
-
-
-
-
-
-// COMMON FUNCTIONS
-
-function randomInRange(min,max) {
-  return Math.floor(Math.random() * (max-min + 1)) + min;
+  // stores.push(this);     // ***FIX: need to create array of store objects
 }
 
-function setTime(hoursAfterOpening) {
+Store.prototype.getHoursOfOp = function(hoursAfterOpening) {  // populate dailySales[].time
   var time = '';
   if (hoursAfterOpening < 6) {
     time = `${hoursAfterOpening+6}am: `;
@@ -327,7 +23,85 @@ function setTime(hoursAfterOpening) {
     time = `${hoursAfterOpening-6}pm: `;
   }
   return time;
-}
+};
 
+Store.prototype.getHourlyCustomers = function(min, max) {   // populate dailySales[].customers
+  var hourlyCustomers = Math.floor(Math.random() * (max-min + 1)) + min;
+  console.log('hourlyCustomers', hourlyCustomers);
+  return hourlyCustomers;
+};
+
+Store.prototype.getHourlySales = function(custThisHour, cookiesPerCust) {  // populate dailySales[].sales
+  var hourlySales = Math.round(custThisHour * cookiesPerCust);
+  console.log('hourlySales', hourlySales);
+  return hourlySales;
+};
+
+Store.prototype.populateSalesArray = function(minCust, maxCust, avgCookiesPerCust) {   // reduce; use get... methods to populate sales array
+  var custThisHour = 0;
+  var salesThisHour = 0;
+  var setClock = 0;
+  for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
+    custThisHour = this.getHourlyCustomers(minCust, maxCust);
+    salesThisHour = this.getHourlySales(custThisHour, avgCookiesPerCust);
+    setClock = this.getHoursOfOp(hoursAfterOpening);
+    this.dailySales[hoursAfterOpening] = {time: setClock, sales: salesThisHour + ' cookies', customers: custThisHour};
+    console.log('salesThisHour', salesThisHour);
+    this.dailyCookieTotal += salesThisHour;
+  }
+  console.log('dailySales', this.dailySales);
+};
+
+Store.prototype.render = function () {
+  //create elements
+  //create content for elements
+  //append elements to page at anchor id
+  var mainEl = document.getElementById('main-content');
+  var container = document.createElement('section');
+  var listBoxEl = document.createElement('ul');
+  var listHeadingEl = document.createElement('h3');
+  var totalSalesEl = document.createElement('li');
+  
+  listHeadingEl.textContent = this.storeName;
+  totalSalesEl.textContent = 'Total: ' + this.dailyCookieTotal;
+  
+  listBoxEl.appendChild(listHeadingEl);
+
+  var timeSlot = 0;    // append list items to list box
+  for (var salesListWalk = 0; salesListWalk < this.dailySales.length; salesListWalk++) {
+    timeSlot = document.createElement('li');
+    timeSlot.textContent = this.dailySales[salesListWalk].time + this.dailySales[salesListWalk].sales; // *** CONSIDER ADDING LIST TEXT HERE ***
+    listBoxEl.appendChild(timeSlot);
+  }
+  
+  listBoxEl.appendChild(totalSalesEl);
+  
+  container.appendChild(listBoxEl);
+
+  mainEl.appendChild(container);
+};
+
+
+var pikeStore = new Store('1st and Pike', 23, 65, 6.3);
+var seatacStore = new Store('SeaTac Airport', 3, 24, 1.2);
+var seattleCenterStore = new Store('Seattle Center', 11, 38, 3.7);
+var capHillStore = new Store('Capitol Hill', 20, 38, 2.3);
+var alkiStore = new Store('Alki', 2, 16, 4.6);
+
+// POPULATE AND RENDER SALES TABLES
+pikeStore.populateSalesArray(pikeStore.minHourlyTraffic, pikeStore.maxHourlyTraffic, pikeStore.avgPurchase);
+pikeStore.render();
+
+seatacStore.populateSalesArray(seatacStore.minHourlyTraffic, seatacStore.maxHourlyTraffic, seatacStore.avgPurchase);
+seatacStore.render();
+
+seattleCenterStore.populateSalesArray(seattleCenterStore.minHourlyTraffic, seattleCenterStore.maxHourlyTraffic, seattleCenterStore.avgPurchase);
+seattleCenterStore.render();
+
+capHillStore.populateSalesArray(capHillStore.minHourlyTraffic, capHillStore.maxHourlyTraffic, capHillStore.avgPurchase);
+capHillStore.render();
+
+alkiStore.populateSalesArray(alkiStore.minHourlyTraffic, alkiStore.maxHourlyTraffic, alkiStore.avgPurchase);
+alkiStore.render();
 
 
