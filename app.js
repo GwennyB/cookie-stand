@@ -19,7 +19,7 @@ var pikePlace = {
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
       totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setTime(hoursAfterOpening), sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
@@ -75,7 +75,7 @@ var seatac = {
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
       totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setTime(hoursAfterOpening), sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
@@ -131,7 +131,7 @@ var seattleCenter = {
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
       totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setTime(hoursAfterOpening), sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
@@ -187,7 +187,7 @@ var capHill = {
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
       totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setTime(hoursAfterOpening), sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
@@ -243,7 +243,7 @@ var alki = {
     for (var hoursAfterOpening = 0; hoursAfterOpening < 14; hoursAfterOpening++) {
       totalCookies = parseInt(this.trafficSimulated() * this.avgPurchase);
       setClock = setTime(hoursAfterOpening);
-      this.dailySales[hoursAfterOpening] = {time: setTime(hoursAfterOpening), sales: totalCookies + ' cookies'};
+      this.dailySales[hoursAfterOpening] = {time: setClock, sales: totalCookies + ' cookies'};
       console.log('totalCookies', totalCookies);
       this.dailySalesTotal += totalCookies;
     }
