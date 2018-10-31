@@ -133,6 +133,12 @@ function makeTable () {
   tableEl.appendChild(tfootEl);
   
   addHeaderRow();
+
+  // BUILD STORE DATA ROWS
+  for (var dataRow = 0; dataRow < stores.length; dataRow++) {
+    var addRow = stores[dataRow].render();
+    tableEl.appendChild(addRow); 
+  }
   addFooterRow();
 }
 
@@ -158,38 +164,16 @@ function addHeaderRow () {
     headerRowEl.appendChild(tdSalesTotalEl);
   }
 
-  // create and append bottom right cell for grand total
+  // create and append top right cell for grand total
   var thGrandTotalEl = document.createElement('th'); // createNewElement('th', dailyTotalsAllStores);  IMPROVEMENT IN WORK
   thGrandTotalEl.className = 'leftRightColumn';
-  thGrandTotalEl.textContent = dailyTotalsAllStores;
+  thGrandTotalEl.textContent = 'Daily Location Total';
   headerRowEl.appendChild(thGrandTotalEl);
 
   console.log('header row', headerRowEl);
   
   theadEl.appendChild(headerRowEl);
 }
-// var topRowEl = document.createElement('tr');
-// var thFirstColEmpty = document.createElement('th');
-// thFirstColEmpty.id = 'topLeftCorner';
-// thFirstColEmpty.textContent = ' ';
-// topRowEl.appendChild(thFirstColEmpty); // append top left corner cell
-// // add time slot headings
-// var thGenericEl = 0; // use as element holder in cell populating loops
-// for (var column = 0; column < stores[0].dailySales.length; column++) {
-//   thGenericEl = document.createElement('th');
-//   thGenericEl.textContent = stores[0].dailySales[column].time; // point to sales data for this store at this hour
-//   topRowEl.appendChild(thGenericEl);
-// }
-// var thLastColEmpty = document.createElement('th');
-// thLastColEmpty.className = 'leftRightColumn';
-// thLastColEmpty.textContent = 'Store Totals';
-// topRowEl.appendChild(thLastColEmpty);
-// tableEl.appendChild(topRowEl);
-// // BUILD STORE DATA ROWS
-// for (var dataRow = 0; dataRow < stores.length; dataRow++) {
-//   var addRow = stores[dataRow].render();
-//   tableEl.appendChild(addRow);
-// }
 
 // BUILD FOOTER ROW
 function addFooterRow () {
