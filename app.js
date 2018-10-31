@@ -96,7 +96,7 @@ new Store('Alki', 2, 16, 4.6);
 
 // console.log('stores', stores);
 
-// render table with sales data for all stores
+// function to render table with sales data for all stores
 function makeTable () {
   // create containers and tie to id
   var mainEl = document.getElementById('main-content');
@@ -140,10 +140,7 @@ function makeTable () {
   thGrandTotalEl.textContent = dailyTotalsAllStores;
   bottomRowEl.appendChild(thGrandTotalEl);
   tableEl.appendChild(bottomRowEl);
-
   mainEl.appendChild(tableEl);
-
-
 }
 
 // calculate total hourly sales for all stores
@@ -159,4 +156,5 @@ for (var i=0; i<stores[0].dailySales.length; i++) {
 // console.log('hourlyTotals', hourlyTotals);
 var dailyTotalsAllStores = sumArray(hourlyTotals);
 
+// render table
 makeTable();
