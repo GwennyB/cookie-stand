@@ -90,21 +90,78 @@ function sumArray (someArray) {
   return arraySum;
 }
 
-
 // create Store object instances
 new Store('1st and Pike', 23, 65, 6.3);
+// console.log('stores', stores);
 new Store('SeaTac Airport', 3, 24, 1.2);
 new Store('Seattle Center', 11, 38, 3.7);
 new Store('Capitol Hill', 20, 38, 2.3);
 new Store('Alki', 2, 16, 4.6);
 
-// console.log('stores', stores);
 
 // GLOBAL FUNCTIONS DECLARATIONS
 
-// function to render table with sales data for all stores
-// IMPROVEMENT: Make outside function for creating and appending a row
-// IMPROVEMENT: Add logic to append row @ ID in proto.render; add IDs to append rows to here
+// BUILD FORM TO CREATE NEW STORE
+function newStoreForm () {
+  // create form elements
+  var mainEl = document.getElementById('main-content');
+  var formEl = document.createElement('form');
+  var inputNameEl = document.createElement('input');
+  var inputMinCustEl = document.createElement('input');
+  var inputMaxCustEl = document.createElement('input');
+  var inputAvgSaleEl = document.createElement('input');
+  var buttonEl = document.createElement('button');
+
+  // give names to input elements for reference
+  formEl.id = 'newStore';
+  inputNameEl.name = 'inStoreName';
+  inputMinCustEl.name = 'inMinCust';
+  inputMaxCustEl.name = 'inMaxCust';
+  inputAvgSaleEl.name = 'inAvgSale';
+
+  // assign input types to input elements
+  inputNameEl.type = 'text';
+  inputMinCustEl.type = 'number';
+  inputMaxCustEl.type = 'number';
+  inputAvgSaleEl.type = 'text';
+
+  // put a perdy on the button
+  buttonEl.textContent = 'Add Store';
+
+  // squish all the pieces together
+  formEl.appendChild(inputNameEl);
+  formEl.appendChild(inputMinCustEl);
+  formEl.appendChild(inputMaxCustEl);
+  formEl.appendChild(inputAvgSaleEl);
+  formEl.appendChild(buttonEl);
+  mainEl.appendChild(formEl);
+}
+
+// ACCEPT NEW STORE PARAMETERS FROM USER
+function makeNewStore(event) {
+  event.preventDefault();
+  // create vars to hold inputs
+  var inputNameEl = event.target.inStoreName.value;
+  var inputMinCustEl = event.target.inMinCust.value;
+  var inputMaxCustEl = event.target.inMaxCust.value;
+  var inputAvgSaleEl = event.target.inAvgSale.value;
+  // create elements to display user inputs
+
+  // populate input elements with user inputs
+
+  // reset form
+  new Store(inputNameEl, inputMinCustEl, inputMaxCustEl, inputAvgSaleEl);
+
+  // re-render table
+  var mainEl = document.getElementById('main-content');
+  document.getElementById('salesTable');
+  document.getElementById('tableTitle');
+  mainEl.removeChild(salesTable);
+  mainEl.removeChild(tableTitle);
+  makeTable();
+}
+
+// BUILD AND RENDER SALES DATA TABLE
 function makeTable () {
 
   // create table, header, body, footer elements
@@ -114,30 +171,30 @@ function makeTable () {
   var tbodyEl = document.createElement('tbody');
   var tfootEl = document.createElement('tfoot');
 
-  
   // give names to table, header, body, footer elements
-  tableEl.id = ('sales-table'); 
-  theadEl.id = ('sales-header');
-  tbodyEl.id = ('sales-body');
-  tfootEl.id = ('sales-footer');
-  
+  tableEl.id = ('salesTable');
+  theadEl.id = ('salesHeader');
+  tbodyEl.id = ('salesBody');
+  tfootEl.id = ('salesFooter');
+
   // create table title
   var tableTitle = document.createElement('h1');
   tableTitle.textContent = 'Daily Demand (by Location)';
-  
+  tableTitle.id = ('tableTitle');
+
   // squish all the pieces together
   mainEl.appendChild(tableTitle);
   mainEl.appendChild(tableEl);
   tableEl.appendChild(theadEl);
   tableEl.appendChild(tbodyEl);
   tableEl.appendChild(tfootEl);
-  
+
   addHeaderRow();
 
   // BUILD STORE DATA ROWS
   for (var dataRow = 0; dataRow < stores.length; dataRow++) {
     var addRow = stores[dataRow].render();
-    tableEl.appendChild(addRow); 
+    tableEl.appendChild(addRow);
   }
   addFooterRow();
 }
@@ -145,16 +202,15 @@ function makeTable () {
 // BUILD HEADER ROW
 function addHeaderRow () {
   // create local var to tie to header element in 'makeTable'
-  var theadEl = document.getElementById('sales-header'); // getElementById('sales-header');
+  var theadEl = document.getElementById('salesHeader'); // getElementById('salesHeader');
   var headerRowEl = document.createElement('tr');
-  console.log('header row', headerRowEl);
-  
+
   // create and append top left corner cell to local row
   var thFirstColEl = document.createElement('th');
   thFirstColEl.className = 'leftRightColumn';
   thFirstColEl.textContent = ' '; // *** DELETE? ***
   headerRowEl.appendChild(thFirstColEl); // append top left corner cell
-  
+
   // create and append cells for hourly totals
   var tdSalesTotalEl = 0; // use as element holder in cell populating loops
   var column = 0; // counts through hours of operation
@@ -170,24 +226,23 @@ function addHeaderRow () {
   thGrandTotalEl.textContent = 'Daily Location Total';
   headerRowEl.appendChild(thGrandTotalEl);
 
-  console.log('header row', headerRowEl);
-  
+  // console.log('header row', headerRowEl);
+
   theadEl.appendChild(headerRowEl);
 }
 
 // BUILD FOOTER ROW
 function addFooterRow () {
   // create local var to tie to footer element in 'makeTable'
-  var footerElement = document.getElementById('sales-footer');
+  var footerElement = document.getElementById('salesFooter');
   var footerRowEl = document.createElement('tr');
-  console.log('footer row', footerRowEl);
-  
+
   // create and append bottom left corner cell to local row
   var thFirstColTotals = document.createElement('td');
   thFirstColTotals.className = 'leftRightColumn';
   thFirstColTotals.textContent = 'Totals';
   footerRowEl.appendChild(thFirstColTotals); // append top left corner cell
-  
+
   // create and append cells for hourly totals
   var tdSalesTotalEl = 0; // use as element holder in cell populating loops
   var column = 0; // counts through hours of operation
@@ -203,12 +258,14 @@ function addFooterRow () {
   thGrandTotalEl.textContent = dailyTotalsAllStores;
   footerRowEl.appendChild(thGrandTotalEl);
 
-  console.log('footer row', footerRowEl);
-  
+  // console.log('footer row', footerRowEl);
+
   footerElement.appendChild(footerRowEl);
 }
 
 
+
+// END GLOBAL FUNCTIONS DECLARACTIONS
 
 
 // CREATE DATA AND BUILD PAGE
@@ -226,16 +283,25 @@ for (var i=0; i<stores[0].dailySales.length; i++) {
 // console.log('hourlyTotals', hourlyTotals);
 var dailyTotalsAllStores = sumArray(hourlyTotals);
 
-// render table
 
+
+// render form
+newStoreForm();
+
+// render table
 makeTable();
+
+// create new store(s) if needed
+var newStoreEl = document.getElementById('newStore');
+newStoreEl.addEventListener('submit', makeNewStore);
+
 
 
 
 
 // IMPROVEMENTS IN WORK
 
-
+// IMPROVEMENT: Make outside function for creating and appending a row
 // // global function to create a row element and append it to the render
 // function createNewElement (whatKind, contents) { // whatKind = case; contents = string for text content
 //   var genericEl = '';
