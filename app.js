@@ -61,6 +61,7 @@ Store.prototype.render = function () {
   var rowGenericEl = document.createElement('tr'); // create row item
   // create, fill, and append store name row header  <th>
   var rowheadGenericEl = document.createElement('th'); // create row header (store name)
+  rowheadGenericEl.className = 'borderColumn';
   rowheadGenericEl.textContent = this.storeName;
   rowGenericEl.appendChild(rowheadGenericEl);
   // create, fill append sales data cells for single store  <td>
@@ -73,6 +74,7 @@ Store.prototype.render = function () {
   }
   // create, fill, and append store daily totals row header  <th>
   var rowtailGenericEl = document.createElement('th'); // create row header (store name)
+  rowtailGenericEl.className = 'borderColumn';
   rowtailGenericEl.textContent = this.dailyCookieTotal;
   rowGenericEl.appendChild(rowtailGenericEl);
   return rowGenericEl;
@@ -100,12 +102,17 @@ new Store('Alki', 2, 16, 4.6);
 function makeTable () {
   // create containers and tie to id
   var mainEl = document.getElementById('main-content');
+  var tableTitle = document.createElement('h1');
   var tableEl = document.createElement('table');
   var topRowEl = document.createElement('tr');
   var bottomRowEl = document.createElement('tr');
+  // create table title
+  tableTitle.textContent = 'Daily Demand (by Location)';
+  mainEl.appendChild(tableTitle);
   // BUILD TOP ROW
   // create top left corner cell
   var thFirstColEmpty = document.createElement('th');
+  thFirstColEmpty.id = 'topLeftCorner';
   thFirstColEmpty.textContent = ' ';
   topRowEl.appendChild(thFirstColEmpty); // append top left corner cell
   // add time slot headings
@@ -116,6 +123,7 @@ function makeTable () {
     topRowEl.appendChild(thGenericEl);
   }
   var thLastColEmpty = document.createElement('th');
+  thLastColEmpty.className = 'borderColumn';
   thLastColEmpty.textContent = 'Store Totals';
   topRowEl.appendChild(thLastColEmpty);
   tableEl.appendChild(topRowEl);
@@ -127,6 +135,7 @@ function makeTable () {
   // BUILD LAST ROW
   // create bottom left corner cell
   var thFirstColTotals = document.createElement('th');
+  thFirstColTotals.className = 'borderColumn';
   thFirstColTotals.textContent = 'Totals';
   bottomRowEl.appendChild(thFirstColTotals); // append top left corner cell
   // add time slot headings
@@ -136,7 +145,9 @@ function makeTable () {
     thAnotherGenericEl.textContent = hourlyTotals[column]; // point to sales data for this store at this hour
     bottomRowEl.appendChild(thAnotherGenericEl);
   }
+  // create bottom right corner cell
   var thGrandTotalEl = document.createElement('th');
+  thGrandTotalEl.className = 'borderColumn';
   thGrandTotalEl.textContent = dailyTotalsAllStores;
   bottomRowEl.appendChild(thGrandTotalEl);
   tableEl.appendChild(bottomRowEl);
