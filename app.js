@@ -57,11 +57,12 @@ Store.prototype.populateSalesArray = function(minCust, maxCust, avgCookiesPerCus
 };
 
 Store.prototype.render = function () {
+  // IMPROVEMENT: Add logic to append row @ ID. Need to declare var here to tie to ID in "makeTable". Add IDs to append rows to in "makeTable".
   // create and populate data row for a store
   var rowGenericEl = document.createElement('tr'); // create row item
   // create, fill, and append store name row header  <th>
   var rowheadGenericEl = document.createElement('th'); // create row header (store name)
-  rowheadGenericEl.className = 'borderColumn';
+  rowheadGenericEl.className = 'leftRightColumn';
   rowheadGenericEl.textContent = this.storeName;
   rowGenericEl.appendChild(rowheadGenericEl);
   // create, fill append sales data cells for single store  <td>
@@ -74,7 +75,7 @@ Store.prototype.render = function () {
   }
   // create, fill, and append store daily totals row header  <th>
   var rowtailGenericEl = document.createElement('th'); // create row header (store name)
-  rowtailGenericEl.className = 'borderColumn';
+  rowtailGenericEl.className = 'leftRightColumn';
   rowtailGenericEl.textContent = this.dailyCookieTotal;
   rowGenericEl.appendChild(rowtailGenericEl);
   return rowGenericEl;
@@ -89,6 +90,7 @@ function sumArray (someArray) {
   return arraySum;
 }
 
+
 // create Store object instances
 new Store('1st and Pike', 23, 65, 6.3);
 new Store('SeaTac Airport', 3, 24, 1.2);
@@ -98,18 +100,24 @@ new Store('Alki', 2, 16, 4.6);
 
 // console.log('stores', stores);
 
+// GLOBAL FUNCTIONS DECLARATIONS
+
 // function to render table with sales data for all stores
+// IMPROVEMENT: Make outside function for creating and appending a row
+// IMPROVEMENT: Add logic to append row @ ID in proto.render; add IDs to append rows to here
 function makeTable () {
   // create containers and tie to id
   var mainEl = document.getElementById('main-content');
   var tableTitle = document.createElement('h1');
   var tableEl = document.createElement('table');
+  tableEl.id = ('sales-table'); // *** TIE IN FOR ALL ELEMENTS CONTAINED IN TABLE
   var topRowEl = document.createElement('tr');
-  var bottomRowEl = document.createElement('tr');
+  var footerElement = document.createElement('tfoot');
+  footerElement.id = ('footer'); // *** TIE IN TO APPEND FOOTER ROW FROM FUNCTION
   // create table title
   tableTitle.textContent = 'Daily Demand (by Location)';
   mainEl.appendChild(tableTitle);
-  // BUILD TOP ROW
+  // BUILD HEADER ROW
   // create top left corner cell
   var thFirstColEmpty = document.createElement('th');
   thFirstColEmpty.id = 'topLeftCorner';
@@ -123,36 +131,55 @@ function makeTable () {
     topRowEl.appendChild(thGenericEl);
   }
   var thLastColEmpty = document.createElement('th');
-  thLastColEmpty.className = 'borderColumn';
+  thLastColEmpty.className = 'leftRightColumn';
   thLastColEmpty.textContent = 'Store Totals';
   topRowEl.appendChild(thLastColEmpty);
   tableEl.appendChild(topRowEl);
-  // build rows for each store
+  // BUILD STORE DATA ROWS
   for (var dataRow = 0; dataRow < stores.length; dataRow++) {
     var addRow = stores[dataRow].render();
     tableEl.appendChild(addRow);
   }
-  // BUILD LAST ROW
-  // create bottom left corner cell
-  var thFirstColTotals = document.createElement('th');
-  thFirstColTotals.className = 'borderColumn';
-  thFirstColTotals.textContent = 'Totals';
-  bottomRowEl.appendChild(thFirstColTotals); // append top left corner cell
-  // add time slot headings
-  var thAnotherGenericEl = 0; // use as element holder in cell populating loops
-  for (column = 0; column < stores[0].dailySales.length; column++) {
-    thAnotherGenericEl = document.createElement('th');
-    thAnotherGenericEl.textContent = hourlyTotals[column]; // point to sales data for this store at this hour
-    bottomRowEl.appendChild(thAnotherGenericEl);
-  }
-  // create bottom right corner cell
-  var thGrandTotalEl = document.createElement('th');
-  thGrandTotalEl.className = 'borderColumn';
-  thGrandTotalEl.textContent = dailyTotalsAllStores;
-  bottomRowEl.appendChild(thGrandTotalEl);
-  tableEl.appendChild(bottomRowEl);
-  mainEl.appendChild(tableEl);
+  addFooterRow();
 }
+
+// BUILD FOOTER ROW
+function addFooterRow () {
+  // create local var to tie to footer element in 'makeTable'
+  var footerElement = document.getElementById('footer');
+  var footerRowEl = document.createElement('tr');
+  console.log('footer row', footerRowEl);
+  
+  // create and append bottom left corner cell to local row
+  var thFirstColTotals = document.createElement('td');
+  thFirstColTotals.className = 'leftRightColumn';
+  thFirstColTotals.textContent = 'Totals';
+  footerRowEl.appendChild(thFirstColTotals); // append top left corner cell
+  
+  // create and append cells for hourly totals
+  var tdSalesTotalEl = 0; // use as element holder in cell populating loops
+  var column = 0; // counts through hours of operation
+  for (column = 0; column < hourlyTotals.length; column++) {
+    tdSalesTotalEl = document.createElement('td');
+    tdSalesTotalEl.textContent = hourlyTotals[column]; // point to sales data for this store at this hour
+    footerRowEl.appendChild(tdSalesTotalEl);
+  }
+
+  // create and append bottom right cell for grand total
+  var thGrandTotalEl = document.createElement('td'); // createNewElement('th', dailyTotalsAllStores);  IMPROVEMENT IN WORK
+  thGrandTotalEl.className = 'leftRightColumn';
+  thGrandTotalEl.textContent = dailyTotalsAllStores;
+  footerRowEl.appendChild(thGrandTotalEl);
+
+  console.log('footer row', footerRowEl);
+  
+  footerElement.appendChild(footerRowEl);
+}
+
+
+
+
+// CREATE DATA AND BUILD PAGE
 
 // calculate total hourly sales for all stores
 var hourlyTotals = [];
@@ -168,4 +195,38 @@ for (var i=0; i<stores[0].dailySales.length; i++) {
 var dailyTotalsAllStores = sumArray(hourlyTotals);
 
 // render table
+
 makeTable();
+
+
+
+
+// IMPROVEMENTS IN WORK
+
+
+// // global function to create a row element and append it to the render
+// function createNewElement (whatKind, contents) { // whatKind = case; contents = string for text content
+//   var genericEl = '';
+//   // switch (whatKind) {
+//   // case 'h1':
+//   //   genericEl = document.createElement('h1');
+//   //   genericEl.textContent(contents);
+//   //   break;
+//   // case 'table':
+//   //   genericEl = document.createElement('table');
+//   //   break;
+//   // case 'tr':
+//   //   genericEl = document.createElement('tr');
+//   //   genericEl.textContent(contents);
+//   //   break;
+//   // case 'th':
+//     genericEl = document.createElement('th');
+//     genericEl.textContent(contents);
+//   //   break;
+//   // case 'td':
+//   //   genericEl = document.createElement('td');
+//   //   genericEl.textContent(contents);
+//   //   break;
+//   // }
+//   return genericEl;
+// }
