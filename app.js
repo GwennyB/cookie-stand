@@ -1,3 +1,4 @@
+'use strict';
 
 // build store objects
 var stores = []; // to retain all Store object instances
@@ -110,14 +111,10 @@ function makeTable () {
   tableEl.appendChild(theadEl);
   tableEl.appendChild(tbodyEl);
   tableEl.appendChild(tfootEl);
-
+  
+  // build and append table
   addHeaderRow();
-
-  // BUILD STORE DATA ROWS
-  for (var dataRow = 0; dataRow < stores.length; dataRow++) {
-    var addRow = stores[dataRow].render();
-    tableEl.appendChild(addRow);
-  }
+  addStoreRows();
   addFooterRow();
 }
 
@@ -151,6 +148,15 @@ function addHeaderRow () {
   // console.log('header row', headerRowEl);
 
   theadEl.appendChild(headerRowEl);
+}
+
+// BUILD STORE DATA ROWS
+function addStoreRows () {
+  var tbodyEl = document.getElementById('salesBody');
+  for (var dataRow = 0; dataRow < stores.length; dataRow++) {
+    var addRow = stores[dataRow].render();
+    tbodyEl.appendChild(addRow);
+  }
 }
 
 // BUILD FOOTER ROW
@@ -203,10 +209,11 @@ function newStoreForm () {
   // input headers
   // var inputTblEl = document.createElement('table')
   // var inputRowEl = document.createElement('tr');
-  var hdNameEl = document.createElement('h3');
-  var hdMinEl = document.createElement('h3');
-  var hdMaxEl = document.createElement('h3');
-  var hdAvgSalesEl = document.createElement('h3');
+  var hdNameEl = document.createElement('label');
+  var hdMinEl = document.createElement('label');
+  var hdMaxEl = document.createElement('label');
+  var hdAvgSalesEl = document.createElement('label');
+
   // inputs
   // var headerRowEl = document.createElement('tr');
   var inputNameEl = document.createElement('input');
@@ -214,28 +221,32 @@ function newStoreForm () {
   var inputMaxCustEl = document.createElement('input');
   var inputAvgSaleEl = document.createElement('input');
   var buttonEl = document.createElement('button');
+  buttonEl.type = 'submit';
+  buttonEl.textContent = 'Add Store';
 
-  // populate headers with text
-  hdNameEl.textContent = 'New Store Name';
-  hdMinEl.textContent = 'Min Customers / Hr';
-  hdMaxEl.textContent = 'Max Customers / Hr';
-  hdAvgSalesEl.textContent = 'Avg Cookies / Cust';
-  
   // give names to input elements for reference
-  formEl.id = 'newStore';
+  formEl.id = 'addStoreForm';
   inputNameEl.name = 'inStoreName';
   inputMinCustEl.name = 'inMinCust';
   inputMaxCustEl.name = 'inMaxCust';
   inputAvgSaleEl.name = 'inAvgSale';
+
+  hdNameEl.for = inputNameEl.name;
+  hdMinEl.for = inputMinCustEl.name;
+  hdMaxEl.for = inputMaxCustEl.name;
+  hdAvgSalesEl.for = inputAvgSaleEl.name;
+
+  //populate input labels with text
+  hdNameEl.textContent = 'New Store Name';
+  hdMinEl.textContent = 'Min Customers / Hr';
+  hdMaxEl.textContent = 'Max Customers / Hr';
+  hdAvgSalesEl.textContent = 'Avg Cookies / Cust';
 
   // assign input types to input elements
   inputNameEl.type = 'text';
   inputMinCustEl.type = 'number';
   inputMaxCustEl.type = 'number';
   inputAvgSaleEl.type = 'text';
-
-  // put a perdy on the button
-  buttonEl.textContent = 'Add Store';
 
   // squish all the pieces together
   // attach headers to form
@@ -261,20 +272,22 @@ function makeNewStore(event) {
   var inputMinCustEl = event.target.inMinCust.value;
   var inputMaxCustEl = event.target.inMaxCust.value;
   var inputAvgSaleEl = event.target.inAvgSale.value;
-  // delete table
-  var mainEl = document.getElementById('main-content');
-  document.getElementById('salesTable'); // go find table element
-  document.getElementById('tableTitle'); // go find table title element
-  document.getElementById('newStore'); //go find form element
-  mainEl.removeChild(salesTable);
-  mainEl.removeChild(tableTitle);
   // create new store object instance
   new Store(inputNameEl, inputMinCustEl, inputMaxCustEl, inputAvgSaleEl);
-  // delete form to re-render
-  mainEl.removeChild(newStore);
+
+  // re-render entire page
+  // tie in to existing page elements
+  var mainEl = document.getElementById('main-content');
+  var tableTitleEl = document.getElementById('tableTitle'); // go find table title element
+  var tableEl = document.getElementById('salesTable'); //go find form element
+  // delete title, table, and form to re-render
+  mainEl.removeChild(tableTitleEl);
+  mainEl.removeChild(tableEl);
+
+  // console.log('stores', stores);
+
   // re-render table and form
   makeTable();
-  newStoreForm();
 }
 
 
@@ -285,7 +298,6 @@ function makeNewStore(event) {
 
 // create Store object instances
 new Store('1st and Pike', 23, 65, 6.3);
-// console.log('stores', stores);
 new Store('SeaTac Airport', 3, 24, 1.2);
 new Store('Seattle Center', 11, 38, 3.7);
 new Store('Capitol Hill', 20, 38, 2.3);
@@ -304,14 +316,12 @@ for (var i=0; i<stores[0].dailySales.length; i++) {
 // console.log('hourlyTotals', hourlyTotals);
 var dailyTotalsAllStores = sumArray(hourlyTotals);
 
-// render table
+// render form and table
+newStoreForm();
 makeTable();
 
-// render form
-newStoreForm();
-
 // create new store(s) if needed
-var newStoreEl = document.getElementById('newStore');
+var newStoreEl = document.getElementById('addStoreForm');
 newStoreEl.addEventListener('submit', makeNewStore);
 
 

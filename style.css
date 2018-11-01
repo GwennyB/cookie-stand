@@ -54,7 +54,7 @@ form {
   padding: 0px;
 }
 
-form h3, input {
+form label, input {
   box-sizing: border-box;
   width: 25%;
   margin: 5px 0px;
@@ -65,8 +65,9 @@ form input {
   text-align: center;
 } 
 
-form h3 {
+form label {
   text-align: center;
+  font-weight: bold;
   float: left;
 }
 
