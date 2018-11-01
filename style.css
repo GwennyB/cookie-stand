@@ -15,9 +15,9 @@ table {
   position: relative;
   /* top: 20px; */
   /* left: 50px; */
-  width: 96%;
-  border-spacing: 0px;
-  padding: 20px 0px;
+  width: 97;
+  border-collapse: collapse;
+  padding: 20px 10px;
 }
 
 td, th {
@@ -35,10 +35,12 @@ td {
 }
 
 th {
-  font-weight: bold;  
+  font-weight: bold;
+  border: none;
 }
 
 tfoot td {
+  background-color: rgb(236, 172, 146);
   font-weight: bold;
 }
 
@@ -46,29 +48,11 @@ form {
   position: relative;
   /* top: 20px; */
   /* left: 50px; */
-  width: 96%;
-  margin: 50px 0px;
+  width: 97;
+  margin: 50px 10px;
   border-spacing: 0px;
   padding: 0px;
 }
-
-/* form th {
-  box-sizing: border-box;
-  width: 150px;
-  margin-right: 20px;
-  display: inline;
-  border: 1px solid black;
-  font-size: 16px;
-}
-
-form input {
-  box-sizing: border-box;
-  width: 200px;
-  margin-right: 20px;
-  display: inline;
-  border: 1px solid black;
-  font-size: 16px;
-}  */
 
 form h3, input {
   box-sizing: border-box;
@@ -95,11 +79,34 @@ button {
   height: 50px;
 }
 
-.leftRightColumn {
-  width: 125px;
+.leftColumn {
+  width: 200px;
+  border: none;
 }
 
-#topLeftCorner {
-  width: 125px;
+th.leftColumn {
+  text-align: right;
+  padding-right: 15px;
+}
+
+.rightColumn {
+  background-color: rgb(152, 247, 242);
+  width: 100px;
+  border: 1px solid black;
+}
+
+.topCornerCell {
+  background-color: none;
   border: none;
+}
+
+#leftFooter {
+  background-color: white;
+  border: none;
+  text-align: right;
+  padding-right: 15px;
+}
+
+#rightFooter {
+  background-color: rgb(207, 210, 211);
 }

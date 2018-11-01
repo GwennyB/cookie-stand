@@ -62,7 +62,7 @@ Store.prototype.render = function () {
   var rowGenericEl = document.createElement('tr'); // create row item
   // create, fill, and append store name row header  <th>
   var rowheadGenericEl = document.createElement('th'); // create row header (store name)
-  rowheadGenericEl.className = 'leftRightColumn';
+  rowheadGenericEl.className = 'leftColumn';
   rowheadGenericEl.textContent = this.storeName;
   rowGenericEl.appendChild(rowheadGenericEl);
   // create, fill append sales data cells for single store  <td>
@@ -75,7 +75,7 @@ Store.prototype.render = function () {
   }
   // create, fill, and append store daily totals row header  <th>
   var rowtailGenericEl = document.createElement('th'); // create row header (store name)
-  rowtailGenericEl.className = 'leftRightColumn';
+  rowtailGenericEl.className = 'rightColumn';
   rowtailGenericEl.textContent = this.dailyCookieTotal;
   rowGenericEl.appendChild(rowtailGenericEl);
   return rowGenericEl;
@@ -129,7 +129,7 @@ function addHeaderRow () {
 
   // create and append top left corner cell to local row
   var thFirstColEl = document.createElement('th');
-  thFirstColEl.className = 'leftRightColumn';
+  thFirstColEl.className = 'topCornerCell';
   thFirstColEl.textContent = ' '; // *** DELETE? ***
   headerRowEl.appendChild(thFirstColEl); // append top left corner cell
 
@@ -144,7 +144,7 @@ function addHeaderRow () {
 
   // create and append top right cell for grand total
   var thGrandTotalEl = document.createElement('th'); // createNewElement('th', dailyTotalsAllStores);  IMPROVEMENT IN WORK
-  thGrandTotalEl.className = 'leftRightColumn';
+  thGrandTotalEl.className = 'topCornerCell';
   thGrandTotalEl.textContent = 'Daily Location Total';
   headerRowEl.appendChild(thGrandTotalEl);
 
@@ -161,7 +161,7 @@ function addFooterRow () {
 
   // create and append bottom left corner cell to local row
   var thFirstColTotals = document.createElement('td');
-  thFirstColTotals.className = 'leftRightColumn';
+  thFirstColTotals.id = 'leftFooter';
   thFirstColTotals.textContent = 'Totals';
   footerRowEl.appendChild(thFirstColTotals); // append top left corner cell
 
@@ -176,7 +176,7 @@ function addFooterRow () {
 
   // create and append bottom right cell for grand total
   var thGrandTotalEl = document.createElement('td'); // createNewElement('th', dailyTotalsAllStores);  IMPROVEMENT IN WORK
-  thGrandTotalEl.className = 'leftRightColumn';
+  thGrandTotalEl.id = 'rightFooter';
   thGrandTotalEl.textContent = dailyTotalsAllStores;
   footerRowEl.appendChild(thGrandTotalEl);
 
@@ -238,29 +238,16 @@ function newStoreForm () {
   buttonEl.textContent = 'Add Store';
 
   // squish all the pieces together
-  // build header row
+  // attach headers to form
   formEl.appendChild(hdNameEl);
   formEl.appendChild(hdMinEl);
   formEl.appendChild(hdMaxEl);
   formEl.appendChild(hdAvgSalesEl);
-  // headerRowEl.appendChild(hdNameEl);   ***
-  // headerRowEl.appendChild(hdMinEl);  ***
-  // headerRowEl.appendChild(hdMaxEl);  ***
-  // headerRowEl.appendChild(hdAvgSalesEl);  ***
-  // build inputs row
+  // attach input fields to form
   formEl.appendChild(inputNameEl);
   formEl.appendChild(inputMinCustEl);
   formEl.appendChild(inputMaxCustEl);
   formEl.appendChild(inputAvgSaleEl);
-  // inputRowEl.appendChild(inputNameEl);   ***
-  // inputRowEl.appendChild(inputMinCustEl);   ***
-  // inputRowEl.appendChild(inputMaxCustEl);   ***
-  // inputRowEl.appendChild(inputAvgSaleEl);   ***
-  // attach rows to table
-  // inputTblEl.appendChild(headerRowEl);   ***
-  // inputTblEl.appendChild(inputRowEl);   ***
-  // attach table and button to form
-  // formEl.appendChild(inputTblEl);  ***
   formEl.appendChild(buttonEl);
   // attach form to main
   mainEl.appendChild(formEl);
