@@ -285,6 +285,10 @@ function makeNewStore(event) {
   mainEl.removeChild(tableEl);
 
   // console.log('stores', stores);
+  event.target.inStoreName.value = '';
+  event.target.inMinCust.value = '';
+  event.target.inMaxCust.value = '';
+  event.target.inAvgSale.value = '';
 
   // re-render table and form
   makeTable();
