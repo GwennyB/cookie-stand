@@ -247,7 +247,12 @@ function newStoreForm () {
   inputMinCustEl.type = 'number';
   inputMaxCustEl.type = 'number';
   inputAvgSaleEl.type = 'text';
-
+  
+  inputNameEl.placeholder = 'ex: Lincoln Square';
+  inputMinCustEl.placeholder = 'ex: 3 (no decimals)';
+  inputMaxCustEl.placeholder = 'ex: 8 (no decimals)';
+  inputAvgSaleEl.placeholder = 'ex: 3.8 (decimals ok)';
+  
   // squish all the pieces together
   // attach headers to form
   formEl.appendChild(hdNameEl);
