@@ -11,7 +11,7 @@
 
 body {
   width: 100%;
-  background-color: rgb(250, 225, 192);
+  background-color: rgba(250, 225, 192, 0.8);
   /* background-color: white; */
   color: rgb(77, 57, 32);
   margin: 0px;
@@ -57,7 +57,7 @@ section h2 {
 header img {
   padding: 0px 5px;
   width: 98px;
-  background-color: rgba(250, 225, 192, 0)
+  background-color: rgba(250, 225, 192, 0.8);
 }
 
 footer img {
@@ -166,7 +166,7 @@ td, th {
 }
 
 td {
-  background-color: rgb(238, 201, 153);
+  background-color: rgba(250, 225, 192, 0.8);
   font-weight: normal;
 }
 
@@ -178,7 +178,7 @@ th {
 }
 
 tfoot td {
-  background-color: rgb(231, 196, 167);
+  background-color: rgba(250, 225, 192, 0.8);
   font-weight: bold;
 }
 
@@ -239,7 +239,7 @@ th.leftColumn {
 }
 
 .topCornerCell {
-  background-color: none;
+  background-color: rgba(250, 225, 192, 0.8);
   border: none;
 }
 
@@ -248,7 +248,7 @@ th.leftColumn {
 }
 
 #leftFooter {
-  background-color: rgb(250, 225, 192);
+  background-color: rgba(250, 225, 192, 0.8);
   border: none;
   text-align: right;
   font-size: 18px;
