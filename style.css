@@ -233,30 +233,8 @@ form {
   border: 1px solid rgb(95, 75, 44);
 }
 
-form label, input {
-  box-sizing: border-box;
-  width: 25%;
-  margin: 0px 0px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
-}
-
-form input {
-  height: 40px;
-  text-align: center;
-  border: 1px solid rgb(231, 185, 167);
-  border-collapse: collapse;
-} 
-
-form label {
-  text-align: center;
-  font-weight: bold;
-  float: left;
-}
-
 button {
   background-color: rgb(231, 185, 167);
-  /* box-sizing: border-box; */
   margin-top: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 18px;
@@ -396,19 +374,55 @@ button {
   background-color: white;
 }
 
+#addStoreForm label, input {
+  box-sizing: border-box;
+  width: 24%;
+  margin: 0px 0px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+}
+
+#addStoreForm input {
+  display: inline-block;
+  height: 40px;
+  text-align: center;
+  border: 1px solid rgb(231, 185, 167);
+  border-collapse: collapse;
+} 
+
+#addStoreForm label {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+}
+
 #contactform {
   width: 60%;
   margin: 20px 20% 20px 20%;
 }
 
-#contactform label, input, select, option, textarea, button {
+#contactform button {
+  margin: 20px 15% 20px 15%;
+  text-align: center;
+}
+
+#contactform select, option, textarea, button {
   display: block;
   width: 70%;
   margin: 20px 15% 0px 15%;
   text-align: center;
 }
 
-#contactform button {
-  margin: 20px 15% 20px 15%;
+#contactform input {
+  display: block;
+  width: 70%;
+  margin: 20px 15% 0px 15%;
+  text-align: center;
+}
+
+#contactform label {
+  display: block;
+  width: 70%;
+  margin: 20px 15% 0px 15%;
   text-align: center;
 }
