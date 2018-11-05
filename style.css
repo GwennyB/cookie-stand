@@ -157,7 +157,7 @@ article {
 
 article img {
   width: 40%;
-  margin: 0px 30%;
+  margin: 0px;
 }
 
 #family {
@@ -322,4 +322,33 @@ nav :visited {
   font-size: 20px;
   font-family: 'Gloria Hallelujah', cursive;
   color: rgb(139, 97, 80);
+}
+
+.urhere {
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: rgb(250, 232, 208);
+  border: 1px solid rgb(139, 97, 80);
+  border-radius: 10px;
+}
+
+.merchandise img {
+  float: left;
+  padding: 20px 10px 0px 30px;
+  width: 45%;
+}
+
+.merchandise div, h3 {
+  float: right;
+  padding: 20px 30px 0px 10px;
+
+  width: 40%;
+}
+
+.merchandise td, th {
+  background-color: white;
+}
+
+button {
+  margin-bottom: 10px;
 }
