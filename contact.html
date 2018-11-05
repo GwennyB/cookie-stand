@@ -25,11 +25,40 @@
           <li><a href="onlinestore.html">Cookies & Gear</a></li>
           <li><a href="locations.html">Store Locations</a></li>
           <li><a href="careers.html">Careers</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a class="urhere" href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
     </header> 
-    <main id="main-content">  <!-- use this as anchor point to tie in script -->
+    <main>
+      <section>
+        <article>
+          <h3>Had a really great - or not great - experience with us?</h3>
+          <h3>Got a great idea you'd like to share with us? Penny for your thoughts!</h3>
+          <h3>Penny for your thoughts!</h3>
+          <form id="contactform">
+            <label for="username">What's your name?</label>
+            <input name="username" type="text" placeholder="e.g. Pat Baker">
+            <label for="email">What's your email address?</label>
+            <input name="email" type="email" placeholder="e.g. pat@salmoncookies.com">
+            
+            <label for="selectstore">Which store?</label>
+            <select name="selectstore" id="drop">
+              <option value="pikeplace">Pike Place Market</option>
+              <option value="seatac">SeaTac Airport</option>
+              <option value="seattlecenter">Seattle Center</option>
+              <option value="caphill">Capitol Hill</option>
+              <option value="alki">Alki Beach</option>
+              <option value="other">online or other</option>
+            </select>
+            
+            <label for="feedback">What is your feedback?</label>
+            <textarea name="feedback" id="" cols="30" rows="10" placeholder="enter your thoughts and suggestions here"></textarea>
+      
+            <button type="submit">That's what I think... SEND IT!</button>
+            
+          </form>
+        </article>
+      </section>
     </main>
     <footer>
       <div>
