@@ -11,7 +11,7 @@
 
 body {
   width: 100%;
-  background-color: rgba(250, 225, 192, 0.8);
+  background-color: rgb(250, 225, 192);
   /* background-color: white; */
   color: rgb(77, 57, 32);
   margin: 0px;
@@ -20,6 +20,7 @@ body {
 
 header {
   width: 100%;
+  margin: 30px auto;
 }
 
 main {
@@ -34,6 +35,10 @@ div {
   width: 100%;
   padding: 0px;
   margin: 0px;
+}
+
+img {
+  background-color: transparent;
 }
 
 section {
@@ -51,13 +56,13 @@ section h1, h2, h3, h4, h5, h6, p {
 }
 
 section h2 {
-  padding-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 header img {
   padding: 0px 5px;
   width: 98px;
-  background-color: rgba(250, 225, 192, 0.8);
 }
 
 footer img {
@@ -69,6 +74,10 @@ footer img {
 header h1, h3, li {
   font-family: 'Gloria Hallelujah', cursive;
   color: rgb(175, 105, 77);
+}
+
+#logo img {
+  background-color: rgb(250, 225, 192);
 }
 
 #logocenter {
@@ -125,6 +134,7 @@ header h1, h3, li {
 
 nav {
   padding-left: 5px auto;
+  margin: 25px auto;
   }
 
 nav li {
@@ -137,8 +147,38 @@ nav li {
   padding: 5px auto;
 }
 
+article {
+  display: inline-block;
+  margin: 10px 20%;
+  width: 60%;
+  padding-bottom: 50px;
+  background-color: white;
+}
+
+article img {
+  width: 40%;
+  margin: 0px 30%;
+}
+
 #family {
-  opacity: 50%;
+  float: left;
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+}
+
+#chinook {
+  float: right;
+  width: 30%;
+  margin: auto;
+  padding: 20px;
+}
+
+#fishfamily {
+  float: left;
+  width: 30%;
+  margin: auto;
+  padding: 20px;
 }
 
 h1#tableTitle {
@@ -166,7 +206,7 @@ td, th {
 }
 
 td {
-  background-color: rgba(250, 225, 192, 0.8);
+  background-color: rgb(250, 225, 192);
   font-weight: normal;
 }
 
@@ -178,7 +218,7 @@ th {
 }
 
 tfoot td {
-  background-color: rgba(250, 225, 192, 0.8);
+  background-color: rgb(250, 225, 192);
   font-weight: bold;
 }
 
@@ -239,7 +279,7 @@ th.leftColumn {
 }
 
 .topCornerCell {
-  background-color: rgba(250, 225, 192, 0.8);
+  background-color: rgb(250, 225, 192);
   border: none;
 }
 
@@ -248,7 +288,7 @@ th.leftColumn {
 }
 
 #leftFooter {
-  background-color: rgba(250, 225, 192, 0.8);
+  background-color: rgb(250, 225, 192);
   border: none;
   text-align: right;
   font-size: 18px;
