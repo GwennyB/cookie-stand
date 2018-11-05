@@ -5,7 +5,7 @@
 
 * {
   /* box-sizing: border-box; */
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(77, 57, 32);
 }
 
@@ -160,6 +160,10 @@ article img {
   margin: 0px;
 }
 
+article p {
+  padding: 20px 20px 0px 20px;
+}
+
 #family {
   float: left;
   width: 60%;
@@ -169,16 +173,16 @@ article img {
 
 #chinook {
   float: right;
-  width: 30%;
+  width: 45%;
   margin: auto;
-  padding: 20px;
+  padding: 40px 20px 70px 20px;
 }
 
 #fishfamily {
   float: left;
-  width: 30%;
+  width: 45%;
   margin: auto;
-  padding: 20px;
+  padding: 40px 20px 40px 20px;
 }
 
 h1#tableTitle {
@@ -332,23 +336,62 @@ nav :visited {
   border-radius: 10px;
 }
 
+#introcontent img {
+  float: left;
+  padding: 40px 10px 0px 30px;
+  width: 45%;
+}
+
+#introcontent h4 {
+  padding: 20px 30px 0px 10px;
+}
+
+button {
+  margin-bottom: 10px;
+}
+
+#locationscontent p {
+  margin: 10px;
+  padding: 0px;
+}
+
+#locationscontent h2 {
+  font-family: 'Gloria Hallelujah', cursive;
+  color: rgb(139, 97, 80);
+  margin: 20px auto 0px auto;
+  padding: 0px;
+}
+
+#locationscontent img {
+  float: none;
+  width: 50%;
+  padding: 20px 25%;
+}
+
+#aboutuscontent p {
+  padding: 20px 20px 0px 20px;
+  width: auto;
+}
+
 .merchandise img {
   float: left;
   padding: 20px 10px 0px 30px;
   width: 45%;
 }
 
-.merchandise div, h3 {
+.merchandise div{
   float: right;
   padding: 20px 30px 0px 10px;
-
+  margin: 0px;
   width: 40%;
+}
+
+.merchandise h2 {
+  padding: 0px;
+  margin: 20px auto 0px auto;
+  width: 100%;
 }
 
 .merchandise td, th {
   background-color: white;
-}
-
-button {
-  margin-bottom: 10px;
 }
